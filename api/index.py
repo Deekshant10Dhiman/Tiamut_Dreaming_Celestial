@@ -46,7 +46,7 @@ class handler(BaseHTTPRequestHandler):
         self._send(200, PAGE.format(result=r), "text/html; charset=utf-8")
 
     def do_GET(self):
-        q = parse_qs(urlparse(self.path).query)
+        q = parse_qs(urlparse(self.path).query, keep_blank_values=True)
         tag = q.get("tag", [None])[0]
         self._answer(tag, "json" in q)
 
